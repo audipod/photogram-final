@@ -17,7 +17,10 @@
   
   
   </dd>
+  
 </dl>
+
+
 
 <h2> Own photos (<%= @the_user.own_photos.count %>) </h2>
 
@@ -55,8 +58,9 @@
   <td> <%= a_photo.caption %>
   </td>
 
-  <td> <%= a_photo.created_at %>
-  </td>
+  <td> <%= a_photo.likes_count%> </td>
+
+ <td><%= time_ago_in_words(a_photo.created_at) %> ago</td>
 
   <td> Show details
   </td>
@@ -66,3 +70,7 @@
 <% end %>
 
 </table>
+
+false
+
+

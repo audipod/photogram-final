@@ -25,11 +25,12 @@
     <%= @the_photo.poster.username %>
   </dd>
 
-  <dt>
-    Posted
-  </dt>
-  <dd>
-<%= @the_photo.created_at %>  </dd>
+ <dt>
+  Posted
+</dt>
+<dd>
+  <%= time_ago_in_words(@the_photo.created_at) %> ago
+</dd>
 
   <dt>
     Edit photo
@@ -102,5 +103,3 @@
 
       <button>Add comment</button>
     </form>
-
-

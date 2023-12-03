@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action(:authenticate_user!, { :only => [:index] })
 
+  before_action(:authenticate_user!, { :only => [:profile] })
+
   def index
 
     matching_users = User.all
@@ -28,6 +30,20 @@ class UsersController < ApplicationController
     
    # end
   end
+
+
+  def follow
+    @user = User.find(params[:id])
+    @user.update(follow: true)
+    redirect_to @user, notice: 'You are now following this user.'
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    @user.update(follow: false)
+    redirect_to @user, notice: 'You have unfollowed this user.'
+  end
+  
 
   def create
 
@@ -64,4 +80,12 @@ class UsersController < ApplicationController
       redirect_to("/users/" + the_user.username.to_s)
   
     end
+
+    def edit
+      # Load the user information for editing
+      @user = current_user
+    end
+  
+
+    
 end

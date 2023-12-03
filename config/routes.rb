@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resource :user, only: [:edit, :update]
+
 root "users#index"
 
 
-  get("/", { :controller => "users", :action => "index" })
+  get("/profile", { :controller => "users", :action => "profile" })
 
   get("/users", { :controller => "users", :action => "index" })
 
