@@ -1,21 +1,24 @@
 <h1> List of users </h1>
 
-<form action="/insert_user" method="post">
-  <label for="user_box">Username</label>
-  <input id="user_box" name="query_username">
 
-  <button>Add user</button>
-</form>
+<% if flash[:notice].present? %>
+  <p class="flash-notice"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert].present? %>
+  <p class="flash-alert"><%= flash[:alert] %></p>
+<% end %>
+
 
 
 <table border ="1">
   <tr>
     <th>
-      ID
+      Username
     </th>
 
     <th>
-      Username
+      Private?
     </th>
 
     <th>
@@ -28,12 +31,17 @@
     <tr>
 
       <td>
-        <%= a_user.id %>
+        <%= a_user.username %>
       </td>
 
       <td>
-        <%= a_user.username %>
-      </td>
+  <% if a_user.private == true %>
+    <%= "Yes" %>
+  <% else %>
+    <%= "No" %>
+  <% end %>
+</td>
+
 
       <td>
         <a href="/users/<%= a_user.username %>">Show details 
